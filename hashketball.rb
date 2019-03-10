@@ -121,6 +121,10 @@ def all_players
   game_hash[:home][:players].merge(game_hash[:away][:players])
 end
 
+def get_team_data_by_name(team_name)
+  game_hash.values.find { |team| team[:team_name] == team_name }
+end
+
 def num_points_scored(name)
   all_players.has_key?(name) ? all_players[name][:points] : nil
 end
@@ -130,9 +134,7 @@ def shoe_size(name)
 end
 
 def team_colors(team_name)
-  game_hash.collect do |team, team_data|
-    team_data[:colors] if team_data[:team_name] == team_name
-  end.flatten.compact
+  get_team_data_by_name(team_name)[:colors]
 end
 
 def team_names
@@ -142,12 +144,8 @@ def team_names
 end
 
 def player_numbers(team_name)
-  game_hash.collect do |team, team_data|
-    if team_data[:team_name] == team_name
-      return team_data[:players].collect do |player, player_data|
-        player_data[:number]
-      end
-    end
+  get_team_data_by_name(team_name)[:players].collect do |player, player_data|
+    player_data[:number]
   end
 end
 
