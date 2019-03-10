@@ -158,6 +158,22 @@ def big_shoe_rebounds
   player[1][:rebounds]
 end
 
+def most_points_scored
+  all_players.max_by { |player, stats| stats[:points] }[0]
+end
+
+def team_score(team_name)
+  get_team_data_by_name(team_name)[:players].sum { |x| x[1][:points] }
+end
+
+def winning_team
+  team_names.max_by { |team_name| team_score(team_name) }
+end
+
+def player_with_longest_name
+  all_players.max_by { |player, player_data| player.length }[0]
+end
+
 # def good_practices
 #   game_hash.each do |location, team_data|
 #     #are you ABSOLUTELY SURE what 'location' and 'team data' are? use binding.pry to find out!
