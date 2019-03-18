@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def game_hash 
 	game_hash = {
 		:home => 
@@ -129,6 +130,27 @@ def game_hash
 }
 end 
 
+=======
+# Write your code here!
+def big_shoe_rebounds(h)
+  #will return the number of rebounds associated with the player that has the largest shoe size
+	# STEP1: find the player with the biggest shoe size
+	#STEP 2: return that players number of rebounds
+  h.each do |team, data|
+    data.each do |attribute, values|
+      if attribute == :players
+        values.each do |player_number, player_data|
+          if player_data == [:shoe_size].max
+            return h[team][attribute][player_number][:rebounds]
+          end 
+        end 
+      end 
+    end 
+  end
+end 
+
+big_shoe_rebounds(game_hash)
+>>>>>>> 3e6fd143d8baae62ae7a48af4dc241c90bfb5553
 
 def num_points_scored(name) #takes argument of a players name and returns the number of points
   hash = game_hash
@@ -216,24 +238,15 @@ end
 
 player_stats("Brendon Haywood")
 
-def big_shoe_rebounds(h)
-  #will return the number of rebounds associated with the player that has the largest shoe size
-	# STEP1: find the player with the biggest shoe size
-	#STEP 2: return that players number of rebounds
-  h.each do |team, data|
-    data.each do |attribute, values|
-      if attribute == :players
-        values.each do |player_number, player_data|
-          if player_data == [:shoe_size].max
-            return h[team][attribute][player_number][:rebounds]
-          end 
-        end 
-      end 
-    end 
-  end
-end 
+#big shoe rebounds
+def output_msg(player)
+  puts "#{player.name}, has shoe size: #{player.shoe_size}, and #{player.rebounds} rebounds"
+end
 
-big_shoe_rebounds(game_hash)
+game = Game.new(GAME_HASH)
+players = game.all_players
+biggest_shoe = players.max { |a, b| a.shoe_size <=> b.shoe_size }
+output_msg(biggest_shoe)
 
 
 
