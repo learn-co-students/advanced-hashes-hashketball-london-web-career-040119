@@ -199,6 +199,7 @@ def big_shoe_rebounds
   player_with_largest_shoe = (players_and_shoe_sizes.sort_by {|player, shoe| shoe})[-1][0]
 
   no_rebounds = 0
+  
   game_hash.each do |team, specs|
     if game_hash[team][:players][player_with_largest_shoe]
       no_rebounds = game_hash[team][:players][player_with_largest_shoe][:rebounds]
