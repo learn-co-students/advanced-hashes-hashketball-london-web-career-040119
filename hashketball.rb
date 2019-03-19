@@ -187,7 +187,7 @@ def big_shoe_rebounds
   player_with_largest_shoe = ""
 
   game_hash.each do |team, specs|
-    specs.collect do |key, value|
+    specs.each do |key, value|
       if key == :players
         value.each do |player, stats|
           players_and_shoe_sizes[player] = stats[:shoe]
@@ -215,7 +215,7 @@ def most_points_scored
   player_with_most_points = ""
 
   game_hash.each do |team, specs|
-    specs.collect do |key, value|
+    specs.each do |key, value|
       if key == :players
         value.each do |player, stats|
           players_and_points[player] = stats[:points]
