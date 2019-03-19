@@ -149,5 +149,16 @@ end
 
 def team_names
   team_names = []
-  
+  game_hash.each do |team, specs|
+    specs.each do |spec, data|
+      if spec == :team_name
+        team_names << data
+      end
+    end
+  end
+  team_names
+end
+
+def player_numbers(name_of_team)
+  team_jerseys = []
 end
