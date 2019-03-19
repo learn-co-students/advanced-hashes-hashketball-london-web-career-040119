@@ -180,3 +180,25 @@ def player_stats(player_name)
   end
   player_stats
 end
+
+def big_shoe_rebounds
+
+  players_and_shoe_sizes = {}
+
+  game_hash.each do |team, specs|
+    specs.collect do |key, value|
+      if key == :players
+        value.each do |player, stats|
+          players_and_shoe_sizes[player] = stats[:shoe]
+        end
+      end
+    end
+  end
+
+  player_with_largest_shoe = (players_and_shoe_sizes.sort_by {|player, shoe| shoe})[-1][0]
+
+  
+
+binding.pry
+
+end
