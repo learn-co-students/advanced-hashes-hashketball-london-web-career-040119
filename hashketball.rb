@@ -206,5 +206,26 @@ def big_shoe_rebounds
     end
   end
   no_rebounds
-  
+
+end
+
+def most_points_scored
+
+  players_and_points = {}
+  player_with_most_points = ""
+
+  game_hash.each do |team, specs|
+    specs.collect do |key, value|
+      if key == :players
+        value.each do |player, stats|
+          players_and_points[player] = stats[:points]
+        end
+      end
+    end
+  end
+
+  player_with_most_points = (players_and_points.sort_by {|player, points| points})[-1][0]
+
+  player_with_most_points
+
 end
