@@ -170,3 +170,13 @@ def player_numbers(name_of_team)
   end
   team_jerseys
 end
+
+def player_stats(player_name)
+  player_stats = []
+  game_hash.collect do |team, specs|
+    if game_hash[team][:players][player_name]
+      player_stats = game_hash[team][:players][player_name]
+    end
+  end
+  player_stats
+end
