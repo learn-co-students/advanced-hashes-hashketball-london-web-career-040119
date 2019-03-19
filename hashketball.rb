@@ -184,6 +184,7 @@ end
 def big_shoe_rebounds
 
   players_and_shoe_sizes = {}
+  player_with_largest_shoe = ""
 
   game_hash.each do |team, specs|
     specs.collect do |key, value|
