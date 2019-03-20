@@ -1,0 +1,28 @@
+
+[1mFrom:[0m /home/francisco/advanced-hashes-hashketball-london-web-career-040119/hashketball.rb @ line 278 Object#long_name_steals_a_ton?:
+
+    [1;34m265[0m: [32mdef[0m [1;34mlong_name_steals_a_ton?[0m
+    [1;34m266[0m: 
+    [1;34m267[0m: player = player_with_longest_name
+    [1;34m268[0m: 
+    [1;34m269[0m: players_and_steals = [31m[1;31m"[0m[31m[1;31m"[0m[31m[0m
+    [1;34m270[0m: 
+    [1;34m271[0m: game_hash.each [32mdo[0m |team, specs|
+    [1;34m272[0m:   specs.each [32mdo[0m |key, value|
+    [1;34m273[0m:     [32mif[0m key == [33m:players[0m
+    [1;34m274[0m:       value.each [32mdo[0m |player, stats|
+    [1;34m275[0m:         players_and_steals[player] = stats[[33m:steals[0m]
+    [1;34m276[0m:       [32mend[0m
+    [1;34m277[0m:     [32mend[0m
+ => [1;34m278[0m:     binding.pry
+    [1;34m279[0m:   [32mend[0m
+    [1;34m280[0m:   binding.pry
+    [1;34m281[0m: [32mend[0m
+    [1;34m282[0m: 
+    [1;34m283[0m: players_with_most_steals = (players_and_steals.sort_by {|player, steals| steals})[[1;34m-1[0m][[1;34m0[0m]
+    [1;34m284[0m: binding.pry
+    [1;34m285[0m: 
+    [1;34m286[0m: 
+    [1;34m287[0m: 
+    [1;34m288[0m: [32mend[0m
+

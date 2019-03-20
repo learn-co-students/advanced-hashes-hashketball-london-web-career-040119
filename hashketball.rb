@@ -246,7 +246,45 @@ def winning_team
   if home_team_points > away_team_points
     game_hash[:home][:team_name]
   else
-    game_hash[:away]{:team_name}
+    game_hash[:away][:team_name]
   end
-  
+
+end
+
+def player_with_longest_name
+
+  players = []
+  player_with_longest_name = ""
+
+  game_hash.each {|team, specs| players << specs[:players].keys}
+  player_with_longest_name = players.flatten.max_by(&:length)
+
+  player_with_longest_name
+end
+
+def long_name_steals_a_ton?
+
+player = player_with_longest_name
+
+player_with_most_steals = ""
+players_and_steals = {}
+
+game_hash.each do |team, specs|
+  specs.each do |key, value|
+    if key == :players
+      value.each do |player, stats|
+        players_and_steals[player] = stats[:steals]
+      end
+    end
+  end
+end
+
+player_with_most_steals = (players_and_steals.sort_by {|player, steals| steals})[-1][0]
+
+if player == player_with_most_steals
+  true
+else
+  false
+end
+
 end
