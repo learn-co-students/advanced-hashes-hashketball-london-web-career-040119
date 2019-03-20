@@ -249,6 +249,37 @@ biggest_shoe = players.max { |a, b| a.shoe_size <=> b.shoe_size }
 output_msg(biggest_shoe)
 
 
+##most points scored
+def most_points_scored(h)
+	#this method iterates through the hash, finds the player with the highest points and returns the name
+	#access the players level
+	#find the player with the highest points
+	#return the player with the highest points
+
+  h.each do |team, data|
+    data[:players].values.each do |player|
+      player.each do |key, value|
+        if key == :points
+          return h[data][:players][:name] if player.max_by{|key,value| value}
+        end 
+      end 
+    end 
+  end
+end 
+
+most_points_scored(game_hash)
+## ERRORS:
+## comparison of Integer with String failed
+##(repl):143:in `each'
+##(repl):143:in `max_by'
+##(repl):143:in `block (3 levels) in most_points_scored'
+##(repl):141:in `each'
+##(repl):141:in `block (2 levels) in most_points_scored'
+##(repl):140:in `each'
+##(repl):140:in `block in most_points_scored'
+##(repl):139:in `each'
+##(repl):139:in `most_points_scored'
+##(repl):152:in `<main>'
 
 
 
