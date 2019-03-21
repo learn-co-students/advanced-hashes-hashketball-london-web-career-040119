@@ -167,7 +167,7 @@ end
 
 def player_stats(player)
   player_name = {}
-  game_hash.each do |home_away, details|
+  game_hash.each do | teams, details|
     details[:players].each do |name, stats|
       if name == player
         player_name = stats
@@ -181,7 +181,7 @@ def big_shoe_rebounds
   shoe = 0
   rebounds = 0
 
-  game_hash.each do |home_away, details|
+  game_hash.each do | teams, details|
     details[:players].each do |name, stats|
       if stats[:shoe] > shoe
         shoe = stats[:shoe]
