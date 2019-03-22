@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+require 'pry'
 def game_hash 
 	game_hash = {
 		:home => 
@@ -130,7 +130,6 @@ def game_hash
 }
 end 
 
-=======
 # Write your code here!
 def big_shoe_rebounds(h)
   #will return the number of rebounds associated with the player that has the largest shoe size
@@ -150,7 +149,6 @@ def big_shoe_rebounds(h)
 end 
 
 big_shoe_rebounds(game_hash)
->>>>>>> 3e6fd143d8baae62ae7a48af4dc241c90bfb5553
 
 def num_points_scored(name) #takes argument of a players name and returns the number of points
   hash = game_hash
@@ -210,6 +208,7 @@ def player_numbers(teamname) #takes argument of the team name and returns an arr
 	array = []
 	game_hash.each do |team_playing, data|
 		data.each do |attributes, values|
+		  
 			values.each do |player_number, player_data|
 				if player_data == :number
 					array.push(player_number)
@@ -251,21 +250,30 @@ output_msg(biggest_shoe)
 
 ##most points scored
 def most_points_scored(game_teams)
-
-	#this method iterates through the hash, finds the player with the highest points and returns the name
-	#access the players level
-	#find the player with the highest points
-	#return the player with the highest points
-
+  
   game_teams.values.
     flat_map { |team| team.fetch(:players).values }.
     max_by { |player| player.fetch(:points) }
 end
- 
 
-most_points_scored(game_hash)
+##winning team
+def winning_teams(data)
+  score_1 = data[:home][:players].sum { |_, h| h[:points] }
+  #=> 96
+  score_2 = data[:away][:players].sum { |k, v| v[:points] }
+  #=> 85
+  if score_1 > score_2 
+    puts "Brooklyn Nets won the game, their score was #{score_1} points"
+  else 
+    puts "Charlotte Hornets won the game, their score was #{score_2} points"
+  end
+end
+
+winning_teams(game_hash)
+#=> Brooklyn Nets won the game, their score was 96 points
 
 
-
+  
+      
 
 
