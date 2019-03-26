@@ -1,4 +1,5 @@
 
+
 def game_hash
   {
     home: {
@@ -231,35 +232,45 @@ player_stats("Brendon Haywood")
 #Build a method, `big_shoe_rebounds`, that will return the number of rebounds associated with the player that has the largest shoe size
 ##return the player with the biggest shoe size with the players rebounds from the hash
 
-def output_msg(player)
-  puts "#{player.name}, has shoe size: #{player.shoe_size}, and #{player.rebounds} rebounds"
+def big_shoe_rebounds(game_teams)
+  biggest_shoes = game_teams.values.flat_map{ |team| team.fetch(:players).values }.max_by { |player| player.fetch(:shoe) }
+
+
+  game_teams.each do |teams, data|
+    data[:players].each do |player, player_data|
+      if player_data == biggest_shoes
+
+        puts biggest_shoes[:rebounds]
+        puts player
+      end 
+    end
+  end
 end
 
-game = Game.new(GAME_HASH)
-players = game.all_players
-biggest_shoe = players.max { |a, b| a.shoe_size <=> b.shoe_size }
-output_msg(biggest_shoe)
-
+big_shoe_rebounds(game_hash) #correct output
 
 
 #Most points scored
 
 	
-def most_points_scored(game)
+def most_points_scored(game_teams)
+   most_points = game_teams.values.flat_map{ |team| team.fetch(:players).values }.max_by { |player| player.fetch(:points) }
 
-  ## correct practice format without repeating code
-  ## game_teams.values.flat_map{ |team| team.fetch(:players).values }.max_by { |player| player.fetch(:points) }
+   puts most_points
+
+  game_teams.each do |teams, data|
+    data[:players].each do |player, player_data|
+      if player_data == most_points
+        return player 
+      end 
+    end
+  end
   
-  home = game[:home][:players].max_by{|k,v| v[:points]}
-  puts home
-  puts "Mason Plumlee scored the most for Brooklyn Nets"
+  
+end 
 
-  away = game[:away][:players].max_by{|k,v| v[:points]}
-  puts away
-  puts "Ben Gorden scored the most for Charlotte Hornets"
-end
 
-most_points_scored(game_hash)
+most_points_scored(game_hash) #correct output
 
 #winning teams method
 
@@ -297,4 +308,3 @@ player_with_longest_name(game_hash)
 #(repl):122:in `each'
 #(repl):122:in `player_with_longest_name'
 #(repl):129:in `<main>'
-
