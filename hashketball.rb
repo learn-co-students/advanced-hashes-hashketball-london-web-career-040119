@@ -261,7 +261,7 @@ def most_points_scored(game_teams)
   game_teams.each do |teams, data|
     data[:players].each do |player, player_data|
       if player_data == most_points
-        return player 
+        puts player 
       end 
     end
   end
