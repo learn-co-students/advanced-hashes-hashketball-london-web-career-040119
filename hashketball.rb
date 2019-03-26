@@ -1,3 +1,4 @@
+
 def game_hash
   {
     home: {
@@ -123,7 +124,7 @@ def num_points_scored(name)
   game_hash.each do |teams_playing, data| 
     data[:players].each do |player_name, player_data|
       if  player_name == name
-        return hash[teams_playing][:players][name][:points]
+        puts "#{name} scored #{hash[teams_playing][:players][name][:points]} points"
       end 
     end 
   end 
@@ -131,7 +132,8 @@ end
 
       
 
-num_points_scored("Jeff Adrien") #correct output
+num_points_scored("Jeff Adrien") # => Jeff Adrien scored 10 points
+num_points_scored("Ben Gordon") #=>  Ben Gordon scored 33 points
       
 
 #Shoe Size
@@ -140,13 +142,14 @@ def shoe_size(name) #takes name as argument and returns the shoe size
   game_hash.each do |teams_playing, data|
     data[:players].each do |player_name, player_data|
       if player_name == name
-        return game_hash[teams_playing][:players][name][:shoe]
+        puts "#{name} has a shoe size of #{game_hash[teams_playing][:players][name][:shoe]}"
       end 
     end 
   end 
 end
 
-shoe_size("Ben Gordon") #correct output
+shoe_size("Ben Gordon") #=> Ben Gordon has a shoe size of 15
+shoe_size("Jeff Adrien") #=> Jeff Adrien has a shoe size of 18
 
 
 
@@ -164,7 +167,7 @@ def team_colors(team) #takes in an argument of the team name and returns an arra
 	end 
 end 
 
-team_colors("Brooklyn Nets") #correct output
+team_colors("Brooklyn Nets") # => ["Black", "White"]
 
 #Team Names
 #Build a method, `team_names`, that operates on the game hash to return an array of the team names.
@@ -181,7 +184,7 @@ def team_names #operates on the hash to to return an array of team names
 	return array
 end
 
-team_names #correct output
+team_names # => ["Brooklyn Nets", "Charlotte Hornets"]
 
 #Player Numbers
 #Build a method, `player_numbers`, that takes in an argument of a team name and returns an array of the jersey number's for that team.
@@ -190,16 +193,16 @@ def player_numbers(teamname) #takes argument of the team name and returns an arr
   game_hash.each do |team_playing, data|
     if teamname == data[:team_name]
       data[:players].each do |player_name, player_data|
-        array.push(player_data[:number])
+         array.push(player_data[:number])
       end 
     end 
-    return array
+     return array
   end
   
 end
 
 
-player_numbers("Brooklyn Nets") #correct output
+player_numbers("Brooklyn Nets") # => [0, 30, 11, 1, 31]
 
 
 
@@ -210,13 +213,15 @@ def player_stats(name) #takes argument of player name and returns hash of player
   hash.each do |teams_playing, data|
     data[:players].each do |player_name, player_data|
       if player_name == name
-        return player_data
+        puts "#{name}, his stats are #{player_data}"
+      
       end 
     end 
   end 
 end
 
-player_stats("Mason Plumlee") #correct output
+player_stats("Mason Plumlee") # => Mason Plumlee, his stats are {:number=>1, :shoe=>19, :points=>26, :rebounds=>12, :assists=>6, :steals=>3, :blocks=>8, :slam_dunks=>5}
+player_stats("Alan Anderson") # => Alan Anderson, his stats are {:number=>0, :shoe=>16, :points=>22, :rebounds=>12, :assists=>12, :steals=>3, :blocks=>1, :slam_dunks=>1}
 
 
 
@@ -232,14 +237,15 @@ def big_shoe_rebounds(game_teams)
     data[:players].each do |player, player_data|
       if player_data == biggest_shoes
 
-        puts biggest_shoes[:rebounds]
-        puts player
+        rebounds =  biggest_shoes[:rebounds]
+       
+        puts "#{player} has made #{rebounds} rebounds in the game"
       end 
     end
   end
 end
 
-big_shoe_rebounds(game_hash) #correct output
+big_shoe_rebounds(game_hash) # => Mason Plumlee has made 12 rebounds in the game
 
 
 #Most points scored
@@ -248,12 +254,13 @@ big_shoe_rebounds(game_hash) #correct output
 def most_points_scored(game_teams)
    most_points = game_teams.values.flat_map{ |team| team.fetch(:players).values }.max_by { |player| player.fetch(:points) }
 
-   puts most_points
+   
 
   game_teams.each do |teams, data|
     data[:players].each do |player, player_data|
       if player_data == most_points
-        return player 
+        puts "#{player} scored the most points"
+
       end 
     end
   end
@@ -262,7 +269,9 @@ def most_points_scored(game_teams)
 end 
 
 
-most_points_scored(game_hash) #correct output
+
+most_points_scored(game_hash) # => Ben Gordon scored the most points
+
 
 #winning teams method
 
@@ -278,7 +287,8 @@ def winning_teams(data)
   end
 end
 
-winning_teams(game_hash) #correct output
+
+winning_teams(game_hash) # => Brooklyn Nets won the game, their score was 96 points
 
 #player with the longest name
 #iterates through the data to return the player with the longest name
@@ -290,9 +300,13 @@ def player_with_longest_name(game)
 
     end 
   end 
-  array.max_by{|x| x.length}
+  new_array = array.max_by{|x| x.length}
+  puts "#{new_array} has the longest name"
+  
 end
  
-player_with_longest_name(game_hash) #correct output
+player_with_longest_name(game_hash) # => Brendan Haywood has the longest name
+
+
 
 
