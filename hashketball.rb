@@ -282,21 +282,15 @@ winning_teams(game_hash) #correct output
 
 #player with the longest name
 #iterates through the data to return the player with the longest name
-def player_with_longest_name(data)
-  data.each do |team_playing, info|
-    info[:players].each do |key, value|
-      key.max_by{|x| x.length}
+def player_with_longest_name(game)
+  array = []
+  game.each do |teams_playing, data|
+    data[:players].each do |player_name, player_data|
+      array.push(player_name)
+
     end 
-  end
+  end 
+  array.max_by{|x| x.length}
 end
-
-player_with_longest_name(game_hash)
-
-##ERROR
-##undefined method `max_by' for "Alan Anderson":String
-#(repl):124:in `block (2 levels) in player_with_longest_name'
-#(repl):123:in `each'
-#(repl):123:in `block in player_with_longest_name'
-#(repl):122:in `each'
-#(repl):122:in `player_with_longest_name'
-#(repl):129:in `<main>'
+ 
+player_with_longest_name(game_hash) #correct output
