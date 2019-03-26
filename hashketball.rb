@@ -1,4 +1,3 @@
-
 def game_hash
   {
     home: {
@@ -191,15 +190,16 @@ def player_numbers(teamname) #takes argument of the team name and returns an arr
   game_hash.each do |team_playing, data|
     if teamname == data[:team_name]
       data[:players].each do |player_name, player_data|
-        return player_data[:number]
+        array.push(player_data[:number])
       end 
     end 
+    return array
   end
   
 end
 
-player_numbers("Charlotte Hornets") #=> 4
-player_numbers("Brooklyn Nets") #=> 0
+
+player_numbers("Brooklyn Nets") #correct output
 
 
 
@@ -294,3 +294,5 @@ def player_with_longest_name(game)
 end
  
 player_with_longest_name(game_hash) #correct output
+
+
