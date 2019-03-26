@@ -1,5 +1,4 @@
 
-
 def game_hash
   {
     home: {
@@ -121,7 +120,7 @@ end
 #Points scored
 #Build a method, `num_points_scored` that takes in an argument of a player's name and returns the number of points scored for that player.
 def num_points_scored(name) 
-  
+  hash = game_hash
   game_hash.each do |teams_playing, data| 
     data[:players].each do |player_name, player_data|
       if  player_name == name
@@ -133,8 +132,7 @@ end
 
       
 
-num_points_scored("Brendon Haywood")
-#outputs the whole hash
+num_points_scored("Jeff Adrien") #correct output
       
 
 #Shoe Size
@@ -143,14 +141,13 @@ def shoe_size(name) #takes name as argument and returns the shoe size
   game_hash.each do |teams_playing, data|
     data[:players].each do |player_name, player_data|
       if player_name == name
-        return game_hash[teams_playing][:players][name][:shoe_size]
+        return game_hash[teams_playing][:players][name][:shoe]
       end 
     end 
   end 
 end
 
-shoe_size("Brendon Haywood")
-#outputs the whole hash
+shoe_size("Ben Gordon") #correct output
 
 
 
@@ -190,24 +187,19 @@ team_names #correct output
 #Player Numbers
 #Build a method, `player_numbers`, that takes in an argument of a team name and returns an array of the jersey number's for that team.
 def player_numbers(teamname) #takes argument of the team name and returns an array of jersey numbers
-
   array = []
-	game_hash.each do |team_playing, data|
-		data[:team_name].each do |key, value|
-      if value == teamname
-        array.push(game_hash[team_playing][:players][:number])
+  game_hash.each do |team_playing, data|
+    if teamname == data[:team_name]
+      data[:players].each do |player_name, player_data|
+        return player_data[:number]
       end 
-    end
+    end 
   end
-  return array 
+  
 end
 
-player_numbers("Charlotte Hornets")
-##undefined method `each' for "Brooklyn Nets":String
-#(repl):123:in `block in player_numbers'
-#(repl):122:in `each'
-#(repl):122:in `player_numbers'
-#(repl):131:in `<main>'
+player_numbers("Charlotte Hornets") #=> 4
+player_numbers("Brooklyn Nets") #=> 0
 
 
 
@@ -218,13 +210,13 @@ def player_stats(name) #takes argument of player name and returns hash of player
   hash.each do |teams_playing, data|
     data[:players].each do |player_name, player_data|
       if player_name == name
-        return hash[teams_playing][:players][name]
+        return player_data
       end 
     end 
   end 
 end
-#returns the whole hash as the output
-player_stats("Brendon Haywood")
+
+player_stats("Mason Plumlee") #correct output
 
 
 
@@ -261,7 +253,7 @@ def most_points_scored(game_teams)
   game_teams.each do |teams, data|
     data[:players].each do |player, player_data|
       if player_data == most_points
-        puts player 
+        return player 
       end 
     end
   end
