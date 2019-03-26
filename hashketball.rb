@@ -121,7 +121,7 @@ end
 #Points scored
 #Build a method, `num_points_scored` that takes in an argument of a player's name and returns the number of points scored for that player.
 def num_points_scored(name) 
-  hash = game_hash
+  
   game_hash.each do |teams_playing, data| 
     data[:players].each do |player_name, player_data|
       if  player_name == name
