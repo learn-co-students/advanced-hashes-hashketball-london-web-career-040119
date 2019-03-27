@@ -241,7 +241,7 @@ def player_with_longest_name
   players = []
   player_with_longest_name = ""
   game_hash.each {|team, specs| players << specs[:players].keys}
-  player_with_longest_name = players.flatten.max_by(&:length)
+  player_with_longest_name = players.flatten.max_by(:length)
   player_with_longest_name
 end
 
