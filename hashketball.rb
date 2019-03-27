@@ -188,6 +188,7 @@ def big_shoe_rebounds
       if key == :players
         value.each do |player, stats|
           players_and_shoe_sizes[player] = stats[:shoe]
+          binding.pry
         end
       end
     end
