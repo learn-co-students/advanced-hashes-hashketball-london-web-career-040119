@@ -1,4 +1,4 @@
-require 'pry'
+require "pry"
 
 def game_hash
   {
@@ -117,47 +117,44 @@ def game_hash
   }
 end
 
-def num_points_scored(player)
-  points = 0
-  game_hash.each do |team, specs|
-    if game_hash[team][:players][player]
-      points = game_hash[team][:players][player][:points]
-    end
-  end
-  points
-end
 
-def shoe_size(player)
-  shoe_size = 0
-  game_hash.each do |team, specs|
-    if game_hash[team][:players][player]
-      shoe_size = game_hash[team][:players][player][:shoe]
-    end
-  end
-  shoe_size
-end
-
-def team_colors(name_of_team)
-  team_colors = []
-  game_hash.each do |team, specs|
-    if game_hash[team][:team_name] == name_of_team
-      team_colors = game_hash[team][:colors]
-    end
-  end
-  team_colors
-end
-
-def team_names
-  team_names = []
-  game_hash.each do |team, specs|
-    specs.each do |spec, data|
-      if spec == :team_name
-        team_names << data
+def num_points_scored(player_name)
+  game_hash.each do |team, stats|
+    stats[:players].each do |name, specs|
+      if name == player_name
+        return specs[:points]
       end
     end
   end
+end
+
+
+def shoe_size(player_name)
+  game_hash.each do |team, player|
+    player[:players].each do |name, stats|
+      if name == player_name
+        return stats[:shoe]
+      end
+    end
+  end
+end
+
+
+def team_colors(name_of_team)
+  game_hash.each do |team, stats|
+    if stats[:team_name] == name_of_team
+      return stats[:colors]
+    end
+  end
+end
+
+
+def team_names
+  team_names = []
+  game_hash.each {|team, specs| team_names << specs[:team_name]}
   team_names
 end
+    
 
 def player_numbers(name_of_team)
   team_jerseys = []
@@ -171,6 +168,7 @@ def player_numbers(name_of_team)
   team_jerseys
 end
 
+
 def player_stats(player_name)
   player_stats = []
   game_hash.collect do |team, specs|
@@ -181,11 +179,10 @@ def player_stats(player_name)
   player_stats
 end
 
-def big_shoe_rebounds
 
+def big_shoe_rebounds
   players_and_shoe_sizes = {}
   player_with_largest_shoe = ""
-
   game_hash.each do |team, specs|
     specs.each do |key, value|
       if key == :players
@@ -195,25 +192,20 @@ def big_shoe_rebounds
       end
     end
   end
-
   player_with_largest_shoe = (players_and_shoe_sizes.sort_by {|player, shoe| shoe})[-1][0]
-
   no_rebounds = 0
-
   game_hash.each do |team, specs|
     if game_hash[team][:players][player_with_largest_shoe]
       no_rebounds = game_hash[team][:players][player_with_largest_shoe][:rebounds]
     end
   end
   no_rebounds
-
 end
 
-def most_points_scored
 
+def most_points_scored
   players_and_points = {}
   player_with_most_points = ""
-
   game_hash.each do |team, specs|
     specs.each do |key, value|
       if key == :players
@@ -223,52 +215,41 @@ def most_points_scored
       end
     end
   end
-
   player_with_most_points = (players_and_points.sort_by {|player, points| points})[-1][0]
-
-  player_with_most_points
-
+  player_with_most_point
 end
 
-def winning_team
 
+def winning_team
   home_team_points = 0
   away_team_points = 0
-
   game_hash[:home][:players].each do |player, stats|
     home_team_points = home_team_points + stats[:points]
   end
-
   game_hash[:away][:players].each do |player, stats|
     away_team_points = away_team_points + stats[:points]
   end
-
   if home_team_points > away_team_points
     game_hash[:home][:team_name]
   else
     game_hash[:away][:team_name]
   end
-
 end
 
-def player_with_longest_name
 
+def player_with_longest_name
   players = []
   player_with_longest_name = ""
-
   game_hash.each {|team, specs| players << specs[:players].keys}
   player_with_longest_name = players.flatten.max_by(&:length)
-
   player_with_longest_name
 end
 
+
 def long_name_steals_a_ton?
-
 player = player_with_longest_name
-
 player_with_most_steals = ""
 players_and_steals = {}
-
 game_hash.each do |team, specs|
   specs.each do |key, value|
     if key == :players
@@ -279,12 +260,11 @@ game_hash.each do |team, specs|
   end
 end
 
-player_with_most_steals = (players_and_steals.sort_by {|player, steals| steals})[-1][0]
 
+player_with_most_steals = (players_and_steals.sort_by {|player, steals| steals})[-1][0]
 if player == player_with_most_steals
   true
 else
   false
 end
-
 end
