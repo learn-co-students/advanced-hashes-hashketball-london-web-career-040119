@@ -1,0 +1,30 @@
+
+[1mFrom:[0m /home/persuasive-creator-8827/advanced-hashes-hashketball-london-web-career-040119/hashketball.rb @ line 250 Object#big_shoe_rebounds:
+
+    [1;34m237[0m: [32mdef[0m [1;34mbig_shoe_rebounds[0m
+    [1;34m238[0m: 
+    [1;34m239[0m: [1;34m#all_shoe_sizes =[][0m
+    [1;34m240[0m: 
+    [1;34m241[0m: game_hash.each {|team, info|
+    [1;34m242[0m:   info.each {|info_type, data|
+    [1;34m243[0m:     [32mif[0m info_type == [33m:players[0m
+    [1;34m244[0m:       data.each {|player, stats|
+    [1;34m245[0m:           stats.each {|point_type, shoe_num|
+    [1;34m246[0m:             [32mif[0m point_type == [33m:shoe[0m
+    [1;34m247[0m:               [32mreturn[0m shoe_num
+    [1;34m248[0m:               [1;34m#all_shoe_sizes.push(shoe_num)  [0m
+    [1;34m249[0m:             [32mend[0m
+ => [1;34m250[0m:             binding.pry
+    [1;34m251[0m: 
+    [1;34m252[0m:           }
+    [1;34m253[0m:      
+    [1;34m254[0m:       }
+    [1;34m255[0m:   [32mend[0m
+    [1;34m256[0m:   }
+    [1;34m257[0m: }
+    [1;34m258[0m: [1;34m#largest_shoe = all_shoe_sizes.sort[-1][0m
+    [1;34m259[0m: 
+    [1;34m260[0m: 
+    [1;34m261[0m: 
+    [1;34m262[0m: [32mend[0m 
+
